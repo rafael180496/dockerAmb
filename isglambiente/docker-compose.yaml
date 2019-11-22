@@ -1,0 +1,19 @@
+version: '3'
+services:
+  isglservice:
+    image: "rafael180496/isgld:1.1"
+    restart: "always"
+    #network_mode: host
+    ports: 
+      - 8080:8080
+      - 8181:8181
+      - 4848:4848
+      - 2222:2222
+    container_name: "isgltest"
+    command: asadmin start-domain --verbose
+    volumes:
+      - glassfish_isgl:/usr/local/glassfish4/glassfish/domains
+      - /home/dev/project/volumes/tnsora_isgl:/usr/lib/oracle/12.1/client64/network/admin
+      - /home/dev/project/volumes/isgldata:/app/data/iSGL
+volumes:
+  glassfish_isgl:

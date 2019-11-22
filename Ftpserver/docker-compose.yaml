@@ -1,0 +1,21 @@
+#Rhidalgo
+version: '3'
+services:
+  vsftpd:
+    image: "fauria/vsftpd"
+    restart: "always"
+    container_name: "vsftpd"
+    environment:
+      - "FTP_USER:admin"
+      - "FTP_PASS:abc123"
+      - "FILE_OPEN_MODE:0777"
+      - "PASV_MIN_PORT:21100"
+      - "PASV_MAX_PORT:21101"
+    ports:
+      - "20:20"
+      - "21:21"
+      #Puertos
+      - "21100:21100"
+      - "21101:21101"
+    volumes:
+      - ~/project/volumes/dataftp:/home/vsftpd

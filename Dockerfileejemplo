@@ -1,0 +1,7 @@
+#Ejemplo de mysql con  worpres
+
+FROM ubuntu
+
+RUN apt-get update && apt-get install  apt-utils -y
+
+RUN apt-get update && apt-get install  figlet -y

@@ -1,0 +1,28 @@
+version: '3'
+services:
+  dbpost:
+    image: "postgres"
+    restart: "always"
+    container_name: "dbpost"
+    environment:
+      POSTGRES_PASSWORD: abc123
+      TZ: "America/Costa_Rica"
+    ports:
+      - "54320:5432"
+    volumes:
+      - postdbtest:/var/lib/postgresql/data
+  dbmongo:
+    image: mongo
+    restart: "always"
+    command: --serviceExecutor adaptive
+    container_name: "dbmongo"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: abc123
+    ports:
+      - "27016:27017"
+    volumes:
+      - mongodbtest:/data/db
+volumes:
+  mongodbtest:
+  postdbtest: 
