@@ -23,6 +23,18 @@ services:
       - "27016:27017"
     volumes:
       - mongodbtest:/data/db
+  pgadmin:
+    container_name: pgadmin_dev
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    volumes:
+       - pgadmin:/root/.pgadmin
+    ports:
+      - "${PGADMIN_PORT:-50500}:80"
+    restart: always
 volumes:
   mongodbtest:
   postdbtest: 
+  pgadmin:
