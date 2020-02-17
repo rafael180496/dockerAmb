@@ -1,0 +1,27 @@
+version: '3'
+services:
+  dbpost:
+    image: "postgres"
+    restart: "always"
+    container_name: "dbpost"
+    environment:
+      POSTGRES_PASSWORD: abc123
+      TZ: "America/Costa_Rica"
+    ports:
+      - "54320:5432"
+    volumes:
+      - postdbtest:/var/lib/postgresql/data
+  pgadmin:
+    container_name: pgadmin_dev
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    volumes:
+       - pgadmin:/root/.pgadmin
+    ports:
+      - "${PGADMIN_PORT:-50500}:80"
+    restart: always
+volumes:
+  postdbtest: 
+  pgadmin:
