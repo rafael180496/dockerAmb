@@ -1,0 +1,14 @@
+version: '3.2'
+services:
+ media:
+  build: .
+  volumes:
+   - ./media:/media
+   - ./media/bin/x86_64/release/:/usr/local/lib/
+  command: bash
+  environment:
+   - LD_LIBRARY_PATH=usr/lib64:/usr/local/lib
+  expose:
+   - "8080"
+   - "80"
+   - "443"
